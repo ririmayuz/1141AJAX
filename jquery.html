@@ -24,7 +24,7 @@
 
     ul li:hover {
       width: 81%;
-      background-color: rgb(255, 219, 255);
+      background-color: rgb(255, 195, 235);
     }
   </style>
 
@@ -48,32 +48,46 @@
   ********************************************************/
 
   //利用$.ajax()方法傳送請求並取得回應
-  $.ajax(
-    {
-      url: 'https://kktix.com/events.json',
-      type: 'get',
-        success:(res)=>{ 
-          console.log(res)
-          let events=res.entry
-          let li="";
-          console.log(events);
-          events.forEach((event ,idx)=> {
-           let  li="<li>"+event.title+"</li>";
-            $("ul").append(li);
-        });
-        //console.log(li)
-        
-          $(".title").html(res.title)
-         },
+  // $.ajax(
+  //   {
+  //     url: 'https://kktix.com/events.json',
+  //     type: 'get',
+  //       success:(res)=>{ 
+  //         console.log(res)
+  //         let events=res.entry
+  //         let li="";
+  //         console.log(events);
+  //         events.forEach((event ,idx)=> {
+  //          let  li="<li>"+event.title+"</li>";
+  //           $("ul").append(li);
+  //       });
+  //       //console.log(li)
+
+  //         $(".title").html(res.title)
+  //        },
 
 
-      }
+  //     }
 
-      
-  )
+
+  // )
 
 
   //利用$.get()方法傳送請求並取得回應
+  $.get("https://kktix.com/events.json", function (res) {
+    console.log(res);
 
+    let events = res.entry
+    let li = "";
+    console.log(events);
+    events.forEach((event, idx) => {
+      let li = "<li>" + event.title + "</li>";
+      $("ul").append(li);
+    });
+    //console.log(li)
+
+    $(".title").html(res.title)
+
+  })
 
 </script>
