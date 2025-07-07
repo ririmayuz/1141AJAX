@@ -1,50 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>學生資料管理系統</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <!---匯入要使用的函式庫--->
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>學生資料管理系統</title>
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <!---匯入要使用的函式庫--->
+  <script src="jquery.js"></script>
+
+  <style>
+    .class-nav {
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .class-nav button {
+      background-color: #7ec9f5;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      padding: 10px 24px;
+      margin: 6px 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .class-nav button:hover {
+      background-color: #708ef1;
+      box-shadow: 0 4px 12px rgba(60, 60, 180, 0.15);
+    }
+  </style>
 
 </head>
+
 <body>
   <h1 class="header">學生資料管理系統</h1>
+  <div class="class-nav"></div>
 
-  
+
+
 </body>
+
 </html>
 <script>
-/************************************
-* 1.考慮觸發行為的事件
-* 2.建立監聽行為
-* 3.考慮是否需要代入參數
-* 4.是否會有回傳值？回傳值的功用及處理？
-* 5.是否需要更新畫面內容？更新畫面的方法？
-************************************/
+  /************************************
+  * 1.考慮觸發行為的事件
+  * 2.建立監聽行為
+  * 3.考慮是否需要代入參數
+  * 4.是否會有回傳值？回傳值的功用及處理？
+  * 5.是否需要更新畫面內容？更新畫面的方法？
+  ************************************/
 
+  getClassrooms();
 
-//新增資料的函式
-function create(){
+  //取得所有班級資料
+  function getClassrooms() {
+    $.get("./api/classrooms.php", function (classrooms) {
+      console.log(classrooms)
+      // let classes=JSON.parse(classrooms)//parse=解析
+      // console.log(classes);
+      $(".class-nav").html('')
+      classrooms.forEach(item => {
+        $(".class-nav").append(`<button>${item.classroom}</button>`)
+      })
 
-}
+    })
+  }
 
-//查詢資料的函式
-function query(){
+  //新增資料的函式
+  function create() {
 
-}
+  }
 
-//編輯資料的函式
-function update(){
+  //查詢資料的函式
+  function query() {
 
-}
+  }
 
-//刪除資料的函式
-function del(){
+  //編輯資料的函式
+  function update() {
 
-}
+  }
+
+  //刪除資料的函式
+  function del() {
+
+  }
 
 </script>
